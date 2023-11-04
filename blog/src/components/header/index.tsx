@@ -1,4 +1,5 @@
 import * as S from "./styles";
+import SearchBar from "../search-bar";
 
 export default function Header() {
     return(
@@ -8,6 +9,7 @@ export default function Header() {
                     <S.Title>Codelândia</S.Title>
                     <S.Title>blog</S.Title>
                 </S.TextContainer>
+                <SearchBar />
             </S.HeaderContainer>
         </S.Header>
     );
