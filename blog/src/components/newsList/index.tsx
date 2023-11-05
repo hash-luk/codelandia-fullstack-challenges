@@ -1,19 +1,16 @@
-import useNews from "../../services/hooks/useNews";
+import { useEffect, useState } from "react";
+import { client } from "../../services/hooks/useNews";
 
 export default function NewsList() {
-    const {data, isLoading, error} = useNews();
+    const [news, setNews] = useState([]);
 
-    if(isLoading) {
-        console.log("loading")
-        return
-    }
+    useEffect(() => {
+        client.get("").then(res => {
+            setNews(res.data)
+        })
+    },[])
 
-    if(error) {
-        console.log("error")
-        return
-    }
-
-    console.log(data);
+    console.log(news)
 
     return (
         <div>
