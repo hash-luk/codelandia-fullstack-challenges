@@ -1,5 +1,5 @@
-import Header from "./components/header"
-import NewsList from "./components/newsList"
+import Header from "./components/Header"
+import NewsList from "./components/NewsList"
 
 
 function App() {

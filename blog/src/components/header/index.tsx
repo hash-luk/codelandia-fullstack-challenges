@@ -1,5 +1,5 @@
 import * as S from "./styles";
-import SearchBar from "../search-bar";
+import SearchBar from "../Search-Bar";
 
 export default function Header() {
     return(
