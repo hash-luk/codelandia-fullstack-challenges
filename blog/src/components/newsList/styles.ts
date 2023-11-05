@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 
 export const NewsContainer = styled.div`
-    width: 100vw;
+    width: 100%;
     max-width: 900px;
     margin: 100px auto;
     display: flex;

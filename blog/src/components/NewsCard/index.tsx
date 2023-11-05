@@ -1,3 +1,4 @@
+import Heart from "../Heart";
 import * as S from "./styles";
 
 interface NewsProps {
@@ -19,7 +20,7 @@ export default function NewsCard(props: NewsProps) {
     <S.Container>
       <S.Header>
         <S.Span>{date}</S.Span>
-        💜
+        <Heart />
       </S.Header>
       <S.TextWrapper>
         <S.Title>{props.title}</S.Title>
