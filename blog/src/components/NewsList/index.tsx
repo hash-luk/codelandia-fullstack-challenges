@@ -25,7 +25,7 @@ export default function NewsList() {
         <S.NewsContainer>
             {isLoading ? <div>Carregango</div> : news.map(news => {
                 return(
-                    <NewsCard title={news.title} content={news.body} key={news.id}/>
+                    <NewsCard title={news.title} body={news.body} key={news.id}/>
                 )
             })}
         </S.NewsContainer>
