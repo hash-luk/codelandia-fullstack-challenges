@@ -34,13 +34,12 @@ export default function NewsCard(props: NewsProps) {
     return `${day} de ${month}, ${year}`;
   }
 
-  const d = randomDate(new Date(2012, 0, 1), new Date());
-  console.log(d);
+  const date = randomDate(new Date(2012, 1, 1), new Date());
 
   return (
     <S.Container>
       <S.Header>
-        <S.Span>{d}</S.Span>
+        <S.Span>{date}</S.Span>
         <Heart />
       </S.Header>
       <S.TextWrapper>
