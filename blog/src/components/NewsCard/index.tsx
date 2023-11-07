@@ -8,18 +8,39 @@ interface NewsProps {
 }
 
 export default function NewsCard(props: NewsProps) {
-  function correctDate(date?: string) {
-    if (date) {
-      return new Date(date).toLocaleDateString();
-    }
+  const months = [
+    "jan",
+    "fev",
+    "mar",
+    "abr",
+    "mai",
+    "jun",
+    "jul",
+    "ago",
+    "set",
+    "out",
+    "nov",
+    "dez",
+  ];
+
+  function randomDate(start: Date, end: Date) {
+    const generatedDate = new Date(
+      start.getTime() + Math.random() * (end.getTime() - start.getTime())
+    );
+    const day = generatedDate.getDay();
+    const month = months[generatedDate.getMonth()];
+    const year = generatedDate.getFullYear();
+
+    return `${day} de ${month}, ${year}`;
   }
 
-  const date = correctDate(props.date);
+  const d = randomDate(new Date(2012, 0, 1), new Date());
+  console.log(d);
 
   return (
     <S.Container>
       <S.Header>
-        <S.Span>{date}</S.Span>
+        <S.Span>{d}</S.Span>
         <Heart />
       </S.Header>
       <S.TextWrapper>

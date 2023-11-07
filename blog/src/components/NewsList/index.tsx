@@ -4,9 +4,10 @@ import * as S from "./styles";
 import NewsCard from "../NewsCard";
 
 interface ArticleProps {
-    publishedAt: string,
-    title?: string,
-    description: string | null
+    userId: number
+    id: number,
+    title: string,
+    body: string
 }
 
 export default function NewsList() {
@@ -15,18 +16,16 @@ export default function NewsList() {
 
     useEffect(() => {
         client.get("").then(res => {
-            setNews(res.data.articles)
+            setNews(res.data)
         })
         setIsLoading(false)
     },[])
 
     return (
         <S.NewsContainer>
-            {isLoading ? <div>Carregango</div> : news.map((newsObj, index) => {
-                let date = new Date(newsObj.publishedAt);
-                console.log(date.toLocaleDateString());
+            {isLoading ? <div>Carregango</div> : news.map(news => {
                 return(
-                    <NewsCard date={newsObj.publishedAt} title={newsObj.title} content={newsObj.description} key={index}/>
+                    <NewsCard title={news.title} content={news.body} key={news.id}/>
                 )
             })}
         </S.NewsContainer>
