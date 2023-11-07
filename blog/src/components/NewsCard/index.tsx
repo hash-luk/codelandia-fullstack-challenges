@@ -27,7 +27,7 @@ export default function NewsCard(props: NewsProps) {
     const generatedDate = new Date(
       start.getTime() + Math.random() * (end.getTime() - start.getTime())
     );
-    const day = generatedDate.getDay();
+    const day = generatedDate.getDay() != 0 ? generatedDate.getDay() : new Date().getDay();
     const month = months[generatedDate.getMonth()];
     const year = generatedDate.getFullYear();
 
