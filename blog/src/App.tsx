@@ -1,14 +1,16 @@
-import Header from "./components/Header"
-import NewsList from "./components/NewsList"
-
+import Header from "./components/Header";
+import NewsList from "./components/NewsList";
+import { SearchProvider } from "./services/contexts/searchContext";
 
 function App() {
-  return(
+  return (
     <>
-      <Header />
-      <NewsList />
+      <SearchProvider>
+        <Header />
+        <NewsList />
+      </SearchProvider>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
