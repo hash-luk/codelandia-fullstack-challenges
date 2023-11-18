@@ -1,29 +1,51 @@
-import Lottie, {LottieRefCurrentProps} from "lottie-react";
+import Lottie, { LottieRefCurrentProps } from "lottie-react";
 import * as S from "./styles";
-import heartAnimation from "../../assets/animations/purple_heart.json"
-import { useRef, useState } from "react";
+import heartAnimation from "../../assets/animations/purple_heart.json";
+import { useEffect, useRef, useState } from "react";
 
-export default function Heart() {
-    const likeRef = useRef<LottieRefCurrentProps>(null)
-    const [isActive, setIsActive] = useState(false);
+interface HeartProps {
+  isLiked: boolean;
+  onLikeDislike: (isLiked: boolean) => void;
+}
 
-    likeRef.current?.setSpeed(1.3)
+export default function Heart({ isLiked, onLikeDislike }: HeartProps) {
+  const likeRef = useRef<LottieRefCurrentProps>(null);
+  const [isActive, setIsActive] = useState(false);
+  const [progress, setProgress] = useState(isLiked ? 1 : 0);
 
-    function playAnimation() {
-        if(!isActive) {
-            likeRef.current?.setDirection(1)
-            setIsActive(true)
-        } else {
-            likeRef.current?.setDirection(-1)
-            setIsActive(false)
-        }
+  likeRef.current?.setSpeed(1.3);
 
-        likeRef.current?.play();
+  function playAnimation() {
+    if (!isActive) {
+      likeRef.current?.setDirection(1);
+      setIsActive(true);
+    } else {
+      likeRef.current?.setDirection(-1);
+      setIsActive(false);
     }
 
-    return(
-        <S.AnimationContainer>
-            <Lottie lottieRef={likeRef} animationData={heartAnimation} loop={false} autoplay={false}  onClick={playAnimation}/>
-        </S.AnimationContainer>   
-    )
+    likeRef.current?.play();
+    handleLikeClick();
+  }
+  
+  useEffect(() => {
+    setProgress(isLiked ? 1 : 0);
+  }, [isLiked]);
+
+  const handleLikeClick = () => {
+    onLikeDislike(!isLiked);
+  };
+
+  return (
+    <S.AnimationContainer>
+      <Lottie
+        lottieRef={likeRef}
+        animationData={heartAnimation}
+        loop={false}
+        autoplay={false}
+        onClick={playAnimation}
+        initialSegment={[0,progress]}
+      />
+    </S.AnimationContainer>
+  );
 }

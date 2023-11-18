@@ -1,46 +1,35 @@
+import { useState } from "react";
 import Heart from "../Heart";
 import * as S from "./styles";
 
 interface NewsProps {
+  id: number;
   body: string | null;
   date?: string;
   title?: string;
 }
 
+interface LikeState {
+  [newsId: number]: boolean;
+}
+
 export default function NewsCard(props: NewsProps) {
-  const months = [
-    "jan",
-    "fev",
-    "mar",
-    "abr",
-    "mai",
-    "jun",
-    "jul",
-    "ago",
-    "set",
-    "out",
-    "nov",
-    "dez",
-  ];
 
-  function randomDate(start: Date, end: Date) {
-    const generatedDate = new Date(
-      start.getTime() + Math.random() * (end.getTime() - start.getTime())
-    );
-    const day = generatedDate.getDay() != 0 ? generatedDate.getDay() : new Date().getDay();
-    const month = months[generatedDate.getMonth()];
-    const year = generatedDate.getFullYear();
+  const [likes, setLikes] = useState<LikeState>({});
 
-    return `${day} de ${month}, ${year}`;
-  }
 
-  const date = randomDate(new Date(2012, 1, 1), new Date());
+  const handleLikeDislike = (newsId: number, isLiked: boolean) => {
+    setLikes((prevLikes) => ({
+      ...prevLikes,
+      [newsId]: isLiked,
+    }));
+  };
 
   return (
     <S.Container>
       <S.Header>
-        <S.Span>{date}</S.Span>
-        <Heart />
+        <S.Span>{props.date}</S.Span>
+        <Heart isLiked={likes[props.id] || false} onLikeDislike={(isLiked) => handleLikeDislike(props.id, isLiked)}/>
       </S.Header>
       <S.TextWrapper>
         <S.Title>{props.title}</S.Title>
