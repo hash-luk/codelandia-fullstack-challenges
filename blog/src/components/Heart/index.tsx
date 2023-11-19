@@ -1,17 +1,11 @@
 import Lottie, { LottieRefCurrentProps } from "lottie-react";
 import * as S from "./styles";
 import heartAnimation from "../../assets/animations/purple_heart.json";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 
-interface HeartProps {
-  isLiked: boolean;
-  onLikeDislike: (isLiked: boolean) => void;
-}
-
-export default function Heart({ isLiked, onLikeDislike }: HeartProps) {
+export default function Heart() {
   const likeRef = useRef<LottieRefCurrentProps>(null);
   const [isActive, setIsActive] = useState(false);
-  const [progress, setProgress] = useState(isLiked ? 1 : 0);
 
   likeRef.current?.setSpeed(1.3);
 
@@ -25,16 +19,7 @@ export default function Heart({ isLiked, onLikeDislike }: HeartProps) {
     }
 
     likeRef.current?.play();
-    handleLikeClick();
   }
-  
-  useEffect(() => {
-    setProgress(isLiked ? 1 : 0);
-  }, [isLiked]);
-
-  const handleLikeClick = () => {
-    onLikeDislike(!isLiked);
-  };
 
   return (
     <S.AnimationContainer>
@@ -44,7 +29,6 @@ export default function Heart({ isLiked, onLikeDislike }: HeartProps) {
         loop={false}
         autoplay={false}
         onClick={playAnimation}
-        initialSegment={[0,progress]}
       />
     </S.AnimationContainer>
   );

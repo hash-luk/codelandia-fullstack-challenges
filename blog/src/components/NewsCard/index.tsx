@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Heart from "../Heart";
 import * as S from "./styles";
 
@@ -9,27 +8,13 @@ interface NewsProps {
   title?: string;
 }
 
-interface LikeState {
-  [newsId: number]: boolean;
-}
-
 export default function NewsCard(props: NewsProps) {
-
-  const [likes, setLikes] = useState<LikeState>({});
-
-
-  const handleLikeDislike = (newsId: number, isLiked: boolean) => {
-    setLikes((prevLikes) => ({
-      ...prevLikes,
-      [newsId]: isLiked,
-    }));
-  };
 
   return (
     <S.Container>
       <S.Header>
         <S.Span>{props.date}</S.Span>
-        <Heart isLiked={likes[props.id] || false} onLikeDislike={(isLiked) => handleLikeDislike(props.id, isLiked)}/>
+        <Heart/>
       </S.Header>
       <S.TextWrapper>
         <S.Title>{props.title}</S.Title>
