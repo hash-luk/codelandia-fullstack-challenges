@@ -5,10 +5,10 @@ services:
   db:
     image: mysql:8.0.35
     environment:
-      MYSQL_ROOT_PASSWORD: lucaspdev
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
       MYSQL_DATABASE: blog
-      MYSQL_USER: devlucasp
-      MYSQL_PASSWORD: lucaspdev
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
 
     ports:
       - "3306:3306"
