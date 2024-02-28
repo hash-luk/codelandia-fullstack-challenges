@@ -7,32 +7,33 @@ header {
   justify-content: center;
   padding: 42px 0;
   background: linear-gradient(88deg, $pruple 0%, $blue 100%);
-}
 
-header span {
-  font-size: $defaultTitlesFontSize;
-  color: $white;
-}
+  &,
+  .logos {
+    display: flex;
+  }
 
-header,
-.logos {
-  display: flex;
-  align-items: center;
-}
+  span {
+    font-size: $defaultTitlesFontSize;
+    color: $white;
+    font-weight: 700;
+  }
 
-.header-content-wrapper,
-.logos {
-  width: 100%;
-}
+  .header-content-wrapper {
+    max-width: 900px;
+    height: 100%;
+    flex-direction: column;
+    gap: 90px;
+  }
 
-.header-content-wrapper {
-  max-width: 900px;
-  height: 100%;
-  flex-direction: column;
-  gap: 90px;
-}
+  .logos {
+    justify-content: space-between;
+    margin-bottom: 60px;
+    align-items: center;
+  }
 
-.logos {
-  justify-content: space-between;
-  margin-bottom: 60px;
+  .logos,
+  .header-content-wrapper {
+    width: 100%;
+  }
 }
