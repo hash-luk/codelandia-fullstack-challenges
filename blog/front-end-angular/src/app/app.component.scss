@@ -1,0 +1,38 @@
+@import "../variables";
+
+header {
+  width: 100vw;
+  height: auto;
+  max-height: 250px;
+  justify-content: center;
+  padding: 42px 0;
+  background: linear-gradient(88deg, $pruple 0%, $blue 100%);
+}
+
+header span {
+  font-size: $defaultTitlesFontSize;
+  color: $white;
+}
+
+header,
+.logos {
+  display: flex;
+  align-items: center;
+}
+
+.header-content-wrapper,
+.logos {
+  width: 100%;
+}
+
+.header-content-wrapper {
+  max-width: 900px;
+  height: 100%;
+  flex-direction: column;
+  gap: 90px;
+}
+
+.logos {
+  justify-content: space-between;
+  margin-bottom: 60px;
+}
